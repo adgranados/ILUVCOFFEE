@@ -3,7 +3,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 @Controller('coffees')
 export class CoffeesController {
-    @Get("flavors")
+    @Get()
     public findAll(){
        return'This action returns all coffees';
     }
