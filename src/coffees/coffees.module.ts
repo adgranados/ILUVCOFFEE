@@ -16,7 +16,7 @@ import { Flavor } from './entities/flavor.entity';
         // PROVIDE LIST OF BRANDS
         // ------------------------------------------------------------------
         {
-            provide: COFFEE_BRANDS, useValue: ['buddy brew', 'nescafe']
+            provide: COFFEE_BRANDS, useFactory:() => ['buddy brew', 'nescafe']
         }
         // ------------------------------------------------------------------
     ],
