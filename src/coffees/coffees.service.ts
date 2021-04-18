@@ -8,6 +8,7 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from '../events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class CoffeesService {
@@ -19,10 +20,17 @@ export class CoffeesService {
         private readonly flavorRepository: Repository<Flavor>,
         private readonly connection: Connection,
         @Inject(COFFEE_BRANDS)
-        private readonly coffeeBrands: string[]
-
+        private readonly coffeeBrands: string[],
+        private readonly configService:ConfigService
     ) { 
         console.log(this.coffeeBrands);
+        console.group("Config env")
+        console.log('DATABASE_HOST',this.configService.get<string>('DATABASE_HOST','localhost'));
+        console.log('DATABASE_PORT',this.configService.get<number>('DATABASE_PORT',5432));
+        console.log('DATABASE_USER',this.configService.get<string>('DATABASE_USER','postgres'));
+        console.log('DATABASE_PASSWORD',this.configService.get<string>('DATABASE_PASSWORD','pass123'));
+        console.log('DATABASE_NAME',this.configService.get<string>('DATABASE_NAME','postgres'));
+        console.groupEnd()
     }
 
     public findAll(paginationQueryDto: PaginationQueryDto) {
