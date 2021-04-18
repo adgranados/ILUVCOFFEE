@@ -16,7 +16,13 @@ import { Flavor } from './entities/flavor.entity';
         // PROVIDE LIST OF BRANDS
         // ------------------------------------------------------------------
         {
-            provide: COFFEE_BRANDS, useFactory:() => ['buddy brew', 'nescafe']
+            provide: COFFEE_BRANDS, useFactory: async ():Promise<string[]> =>{
+                return new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        resolve(['buddy brew', 'nescafe']);
+                    },1000);
+                });
+            } 
         }
         // ------------------------------------------------------------------
     ],
