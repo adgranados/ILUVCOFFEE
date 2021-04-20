@@ -25,11 +25,11 @@ export class CoffeesService {
     ) { 
         console.log(this.coffeeBrands);
         console.group("Config env")
-        console.log('DATABASE_HOST',this.configService.get<string>('DATABASE_HOST','localhost'));
-        console.log('DATABASE_PORT',this.configService.get<number>('DATABASE_PORT',5432));
-        console.log('DATABASE_USER',this.configService.get<string>('DATABASE_USER','postgres'));
-        console.log('DATABASE_PASSWORD',this.configService.get<string>('DATABASE_PASSWORD','pass123'));
-        console.log('DATABASE_NAME',this.configService.get<string>('DATABASE_NAME','postgres'));
+        console.log('DATABASE_HOST',this.configService.get('database.host'));
+        console.log('DATABASE_PORT',this.configService.get('database.port'));
+        console.log('DATABASE_USER',this.configService.get('database.username'));
+        console.log('DATABASE_PASSWORD',this.configService.get('database.password'));
+        console.log('DATABASE_NAME',this.configService.get('database.database'));
         console.groupEnd()
     }
 
