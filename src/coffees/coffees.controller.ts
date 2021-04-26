@@ -7,7 +7,9 @@ import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import {ApiResponse, ApiForbiddenResponse} from '@nestjs/swagger'
+import {ApiResponse, ApiForbiddenResponse, ApiTags} from '@nestjs/swagger'
+
+@ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
 
