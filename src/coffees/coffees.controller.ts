@@ -7,12 +7,14 @@ import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-
+import {ApiResponse, ApiForbiddenResponse} from '@nestjs/swagger'
 @Controller('coffees')
 export class CoffeesController {
 
     public constructor(private readonly coffeesService:CoffeesService){}
 
+    @ApiResponse({status:403, description:'Forbidden.'})
+    @ApiResponse({status:500, description:'Errores en general no controlados.'})
     @Public()
     @Get()
     public async findAll(@Protocol('https') protocol:string, @Query() paginationQuery:PaginationQueryDto){
@@ -22,7 +24,8 @@ export class CoffeesController {
         console.log("-------------------------------------------");
         return this.coffeesService.findAll(paginationQuery);
     }
-
+    
+    @ApiForbiddenResponse({description:'Forbidden.'})
     @Get(":id")
     public findOne(
         @Param('id', ParseIntPipe) id:number){
